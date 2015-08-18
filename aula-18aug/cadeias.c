@@ -10,21 +10,22 @@ void imprime(char* s)
 
 int comprimento(char* s)
 {
-	return -1;
+	return strlen(s);
 }
 
 void copia(char* dest, char* orig)
 {
-	dest[0] = '\0';
+	strcpy(dest, orig);
 }
 
 void concatena(char* dest, char* orig)
 {
+	/* TODO faça a função aqui! */
 }
 
 int compara(char* s1, char* s2)
 {
-	return -1;
+	return strcmp(s1, s2);
 }
 
 char* le_linha(void)
