@@ -35,6 +35,12 @@
 /* matriz_aloca */
 
 /* matriz_multiplica */
+/* Algoritmo da multiplicação:
+para i menor que M
+	para j menor que N
+		para k menor que P
+			C[i][j] = A[i][k] * B[k][j] + C[i][j]
+*/
 
 /* matriz_libera */
 
@@ -66,8 +72,8 @@ int main(int argc, char** argv)
 	}
 
 	printf("iniciando multiplicacao dos %d x %d elementos ...\n", n, n);
-	/* multiplica  matrizes C = A * B */
-	matriz_multiplica( A, B, C );
+	/* multiplica  matrizes C = A * B para M, N, K de tamanhos */
+	matriz_multiplica( A, B, C, n, n, n );
 
 	/* imprime resultado */
 	for(i = 0; i < n; i++){
