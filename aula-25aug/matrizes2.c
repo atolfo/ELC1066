@@ -1,6 +1,6 @@
 /*
- * ordenacaoBolha.c
- * Exercício sobre vetores e ordenação.
+ * matrizes2.c
+ * Exercício sobre multiplicação de matrizes.
  *
  * The MIT License (MIT)
  * 
@@ -30,76 +30,58 @@
 #include <string.h>
 #include <time.h> /* apenas para gerar numeros aleatorios */
 
-/* crie cada uma das funções neste espaços sem alterar a main */
+/* faça aqui suas funções */
 
-/* função vetor_aloca
- * aloca dinamicamento elementos de um vetor.
- */
+/* matriz_aloca */
 
-/* função ordena_bolha
- * Ordena numeros inteiros dados por n usando o algoritmo de bolha.
- */
+/* matriz_multiplica */
 
-/* função vetor_libera 
- * Libera a memória alocada dinâmicamente 
- */
-
-int* vetor_aloca(int n){return (int*)malloc(sizeof(int)*n);}
-
-void vetor_libera(int* v){free(v);}
-
-void ordena_bolha(int* v, int n)
-{
-	int i, fim, tmp;
-	int troca;
-
-	for(fim=n-1; fim > 0; fim--){
-		troca = 0;
-		for(i= 0; i < fim; i++){
-			if(v[i] > v[i+1]){
-				tmp = v[i+1];
-				v[i+1] = v[i];
-				v[i] = tmp;
-				troca = 1;
-			}
-		}
-		if(troca == 0)
-			return;
-	}
-}
+/* matriz_libera */
 
 int main(int argc, char** argv)
 {
-	int n = 20; /* elementos para serem ordenados */
-	int* v;
-	int i;
+	int n = 20; /* tamanho de uma matriz n x n */
+	int **A, **B, **C; /* matrizes com um vetor de ponteiros */
+	int i, j;
 	
 	/* testa se algum número foi passado como argumento do programa */
 	if( argc > 1 )
 		n = atoi( argv[1] );
 
 	printf("alocando %d elementos ...\n", n);
-	/* aloca memória */
-	v = vetor_aloca( n );
+	/* aloca memória de tamanho n X n */
+	A = matriz_aloca( n, n );
+	B = matriz_aloca( n, n );
+	C = matriz_aloca( n, n );
 
 	/* inicia a sequencia de números pseudo-aleatórios rand() baseado no tempo */
 	srand(time(NULL));
-	/* inicializa o vetor */
-	for(i = 0; i < n; i++)
-		v[i] = rand() % n;
+	/* inicializa a matriz */
+	for(i = 0; i < n; i++){
+		for(j = 0; j < n; j++){
+			A[i][j] = rand() % n;
+			B[i][j] = rand() % n;
+			C[i][j] = 0;
+		}
+	}
 
-	printf("iniciando ordenacao dos %d elementos ...\n", n);
-	/* ordena números */
-	ordena_bolha( v, n );
+	printf("iniciando multiplicacao dos %d x %d elementos ...\n", n, n);
+	/* multiplica  matrizes C = A * B */
+	matriz_multiplica( A, B, C );
 
 	/* imprime resultado */
-	for(i = 0; i < n; i++)
-		printf( "%d ", v[i] );
-	printf( "\n" );
+	for(i = 0; i < n; i++){
+		for(j = 0; j < n; j++){
+			printf( "%d ", C[i][j] );
+		}
+		printf( "\n" );
+	}
 
 	printf("liberando memoria ...\n");
 	/* libera memória do vetor anterior */
-	vetor_libera( v );
+	matriz_libera( A );
+	matriz_libera( B );
+	matriz_libera( C );
 
 	return 0;
 }
