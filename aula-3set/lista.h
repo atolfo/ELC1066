@@ -29,11 +29,8 @@
 
 #include <stdbool.h>
 
-/* define a TAD lista_t */
-typedef struct _lista {
-  void* dado;	      /* ponteiro para o dado (tipo void*) */
-  struct _lista *prox; /* ponteiro para o proximo elemento */
-} lista_t;
+/* define o tipo lista_t, derivado da 'struct _lista' */
+typedef struct _lista lista_t;
 
 /* cria uma lista vazia, ou seja, retorna NULL */
 lista_t* lista_cria(void);

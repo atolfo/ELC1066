@@ -29,6 +29,12 @@
 
 #include "lista.h"
 
+/* define a struct TAD lista */
+struct _lista {
+  void* dado;	      /* ponteiro para o dado (tipo void*) */
+  struct _lista *prox; /* ponteiro para o proximo elemento */
+};
+
 /* cria lista vazia */
 lista_t* lista_cria(void)
 {
