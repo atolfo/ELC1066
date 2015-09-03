@@ -82,3 +82,13 @@ lista_t* lista_remove( lista_t* l, void* dado, bool (*f)(void*, void*)  )
 	/* próxima aula ! */
 	return NULL;
 }
+
+void lista_destroi( lista_t* l )
+{
+	lista_t* elem = l;
+	while( lista_vazia(elem) == false ){
+		lista_t* t = elem->prox;
+		free(elem);
+		elem = t;
+	}
+}

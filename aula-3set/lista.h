@@ -55,4 +55,9 @@ bool lista_busca( lista_t* l, void* dado, bool (*f)(void*, void*)  );
 */
 lista_t* lista_remove( lista_t* l, void* dado, bool (*f)(void*, void*)  );
 
+/* libera a memória de cada nó da lista.
+ * ATENÇÃO: não libera memória dos dados.
+ */
+void lista_destroi( lista_t* l );
+
 #endif

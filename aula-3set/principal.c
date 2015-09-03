@@ -1,7 +1,6 @@
 /*
- * principal.c
- * Programa que testa a TAD lista_t.
- *
+ * principal.c Programa que testa a TAD lista_t.
+ * 
  * The MIT License (MIT)
  * 
  * Copyright (c) 2014, 2015 João V. Lima, UFSM
@@ -31,70 +30,70 @@
 #include "lista.h"
 
 typedef struct {
-  int x;
-  int y;
-} ponto_t;
+	int		x;
+	int		y;
+}		ponto_t;
 
-bool compara( void *a, void *b )
+bool 
+compara(void *a, void *b)
 {
-  /* primeiro faz typecast dos ponteiros para ponto_t */
-  ponto_t *p1 = (ponto_t*)a;
-  ponto_t *p2 = (ponto_t*)b;
+	/* primeiro faz typecast dos ponteiros para ponto_t */
+	ponto_t        *p1 = (ponto_t *) a;
+	ponto_t        *p2 = (ponto_t *) b;
 
-  /* compara os pontos aqui */
-  if( (p1->x == p2->x) && (p1->y == p2->y) ) 
-    return true;
+	/* compara os pontos aqui */
+	if ((p1->x == p2->x) && (p1->y == p2->y))
+		return true;
 
-  return false;
+	return false;
 }
 
-int main(int argc, char **argv)
+int 
+main(int argc, char **argv)
 {
-  lista_t* lista;
-  ponto_t *p1, *p2;
+	lista_t        *lista;
+	ponto_t        *p1, *p2;
 
-  /* cria a lista */
-  lista = lista_cria();
+	/* cria a lista */
+	lista = lista_cria();
 
-  /* aloca alguns pontos para inserir */
-  p1 = (ponto_t*)malloc(sizeof(ponto_t));
-  p1->x = p1->y = 1.0;
-  p2 = (ponto_t*)malloc(sizeof(ponto_t));
-  p2->x = p2->y = 2.0;
+	/* aloca alguns pontos para inserir */
+	p1 = (ponto_t *) malloc(sizeof(ponto_t));
+	p1->x = p1->y = 1.0;
+	p2 = (ponto_t *) malloc(sizeof(ponto_t));
+	p2->x = p2->y = 2.0;
 
-  /* insere os dois pontos */
-  lista= lista_insere( lista, (void*)p1 );
-  lista= lista_insere( lista, (void*)p2 );
-  
-  /* testa se estão na lista */
-  if(lista_busca(lista, p1, compara) == true){
-    printf("Hoooray! Ao buscar encontrei p1...\n");
-  } else {
-    printf("ERRO! Ao buscar nao encontrei p1...\n");
-  }
-  if(lista_busca(lista, p2, compara) == true){
-    printf("Hoooray! Ao buscar encontrei p2...\n");
-  } else {
-    printf("ERRO! Ao buscar nao encontrei p2...\n");
-  }
+	/* insere os dois pontos */
+	lista = lista_insere(lista, (void *)p1);
+	lista = lista_insere(lista, (void *)p2);
+
+	/* testa se estão na lista */
+	if (lista_busca(lista, p1, compara) == true) {
+		printf("Hoooray! Ao buscar encontrei p1...\n");
+	} else {
+		printf("ERRO! Ao buscar nao encontrei p1...\n");
+	}
+	if (lista_busca(lista, p2, compara) == true) {
+		printf("Hoooray! Ao buscar encontrei p2...\n");
+	} else {
+		printf("ERRO! Ao buscar nao encontrei p2...\n");
+	}
 
 #if 0
-  /* remove um elemento da lista e testa se ele esta na lista */
-  lista = lista_remove(lista, p1, compara);
-  if(lista_busca(lista, p1, compara) == true){
-    printf("Hoooray! Ao remover encontrei p1...\n");
-  } else {
-    printf("ERRO! Ao remover nao encontrei p1...\n");
-  }
+	/* remove um elemento da lista e testa se ele esta na lista */
+	lista = lista_remove(lista, p1, compara);
+	if (lista_busca(lista, p1, compara) == true) {
+		printf("Hoooray! Ao remover encontrei p1...\n");
+	} else {
+		printf("ERRO! Ao remover nao encontrei p1...\n");
+	}
+	/* libera memoria */
+	lista = lista_remove(lista, p2, compara);
 #endif
+	lista_destroi(lista);
+	free(p1);
+	free(p2);
+	printf("Tudo Ok\n");
 
-  printf("Tudo Ok\n");
-
-  /* libera memoria */
-  lista = lista_remove(lista, p2, compara);
-  free(p1);
-  free(p2);
-
-  return 0;
+	return 0;
 }
-
