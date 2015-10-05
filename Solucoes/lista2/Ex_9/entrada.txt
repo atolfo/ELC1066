@@ -1,0 +1,4 @@
+'Fulano de Ta' 5.6 7.6 8.1
+'Sicrano Silva' 2.0 4.6 4.2
+
+'Beltrano Alves' 10.0 8.8 9.0
